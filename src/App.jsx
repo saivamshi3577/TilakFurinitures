@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import HeroBackground from './HeroBackground';
-import logo from './assets/logo.png'; 
+import logo from './assets/logo2.png'; 
 import "./App.css";
 
 // Premium React Icons
