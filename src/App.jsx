@@ -20,20 +20,23 @@ export default function App() {
   const [activeSection, setActiveSection] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // 13 Elite High-Conversion Carpentry & Interior Sections
+  // 16 Elite High-Conversion Carpentry & Interior Sections
   const sections = [
     { id: 'home', name: 'Intro' },
     { id: 'heritage', name: 'Our Heritage' },
     { id: 'philosophy', name: 'Design Ethos' },
     { id: 'kitchens', name: 'Kitchen Systems' },
+    { id: 'dining', name: 'Dining Suites' },
     { id: 'living', name: 'Living Lounges' },
     { id: 'wardrobes', name: 'Luxury Storage' },
+    { id: 'bedrooms', name: 'Master Sanctuary' },
     { id: 'kids-vanity', name: 'Vanities & Kids' },
     { id: 'structural', name: 'Heavy Woodwork' },
     { id: 'commercial', name: 'Corporate Spatial' },
     { id: 'workshop', name: 'Live Facility' },
     { id: 'turnkey', name: 'Our Process' },
     { id: 'materials', name: 'Material Ethics' },
+    { id: 'contact-info', name: 'Contact Info' },
     { id: 'contact', name: 'Inquire' }
   ];
 
@@ -119,15 +122,23 @@ export default function App() {
       
       {/* Preloader */}
       <div className="preloader fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0D0D0D]">
-        <img src={logo} alt="Thilak Furnitures" className="preloader-logo w-48 h-auto object-contain mb-4" />
-        <div className="w-16 h-[2px] bg-brand-gold/20 relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-full w-1/2 bg-brand-gold animate-pulse"></div>
+        <img src={logo} alt="Thilak Furnitures" className="preloader-logo w-80 md:w-[420px] h-auto object-contain mb-8" />
+        
+        {/* Luxury Premium Loader */}
+        <div className="premium-loader-container">
+          <div className="premium-spinner">
+            <div className="premium-spinner-circle"></div>
+            <div className="premium-spinner-inner"></div>
+          </div>
+          <span className="premium-loader-text">
+            Crafting Luxury
+          </span>
         </div>
       </div>
 
       {/* Top Floating Header */}
-      <header className="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-6 md:px-12 py-6 backdrop-blur-md bg-transparent">
-        <img src={logo} alt="Logo" className="h-10 md:h-12 w-auto object-contain filter drop-shadow-md" />
+      <header className="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-6 md:px-12 py-4 backdrop-blur-md bg-transparent">
+        <img src={logo} alt="Logo" className="h-16 md:h-20 w-auto object-contain filter drop-shadow-md" />
         
         <div className="flex items-center gap-4">
           <button 
@@ -142,16 +153,16 @@ export default function App() {
         </div>
       </header>
 
-      {/* Dynamically Calibrated 13-Step Nav Loop */}
-      <nav className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 items-center bg-black/10 p-3 rounded-full backdrop-blur-sm border border-white/5">
-        <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-gold/60 [writing-mode:vertical-lr] mb-2 font-mono">Index</span>
+      {/* Dynamically Calibrated Nav Loop */}
+      <nav className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2.5 items-center bg-secondary-theme/40 p-3 rounded-full backdrop-blur-md border border-brand-gold/10">
+        <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-gold/60 [writing-mode:vertical-lr] mb-2 font-sans">Index</span>
         {sections.map((section, idx) => (
           <button
             key={section.id}
             onClick={() => scrollToSection(idx)}
             className="group relative flex items-center justify-end p-1 cursor-pointer"
           >
-            <span className={`absolute right-8 text-[10px] font-mono tracking-widest uppercase whitespace-nowrap transition-all duration-300 transform translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 ${activeSection === idx ? 'text-brand-gold font-bold opacity-100 translate-x-0' : 'text-gray-400'}`}>
+            <span className={`absolute right-8 text-[10px] font-sans tracking-widest uppercase whitespace-nowrap transition-all duration-300 transform translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 ${activeSection === idx ? 'text-brand-gold font-bold opacity-100 translate-x-0' : 'text-theme-heading'}`}>
               {section.name}
             </span>
             <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeSection === idx ? 'bg-brand-gold scale-150 ring-4 ring-brand-gold/20' : 'bg-brand-gold/30 group-hover:bg-brand-gold/60'}`} />
@@ -174,7 +185,7 @@ export default function App() {
           </div>
           <HeroBackground />
           <div className="max-w-4xl z-10 relative">
-            <span className="hero-reveal-sub block text-brand-gold uppercase tracking-[0.2em] text-xs font-bold font-mono mb-4">// Architectural Interior Atelier</span>
+            <span className="hero-reveal-sub block text-brand-gold uppercase tracking-[0.2em] text-xs font-bold font-mono mb-4"> Architectural Interior Atelier</span>
             <h1 className="hero-reveal-title text-5xl sm:text-7xl md:text-9xl tracking-tighter leading-[0.95] mb-6 font-display uppercase text-white">
               Spaces <br />Perfected.
             </h1>
@@ -265,14 +276,30 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 5: Living Lounges */}
-        <section id="living" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
+        {/* SECTION 5: Dining Suites */}
+        <section id="dining" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
             <div className="lg:col-span-7 h-[45vh] lg:h-[65vh] overflow-hidden order-2 lg:order-1 shadow-2xl border border-white/5">
-              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=90" alt="High End TV Console Unit Living Room" className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=1200&q=90" alt="Bespoke Dining Suite Design" className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
             </div>
             <div className="lg:col-span-5 z-10 order-1 lg:order-2 space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[05 / Entertainment Hubs]</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[05 / Social Dining]</span>
+              <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Bespoke Dining Suites</h2>
+              <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
+                We handcraft custom solid hardwood dining tables, refined display credenzas, and integrated luxury home bar units. Every piece is curated to coordinate with your interior architectural styling, bringing families together in spaces that inspire conversation.
+              </p>
+              <div className="premium-reveal-text opacity-0 translate-y-8 flex items-center gap-2 text-xs font-mono text-brand-gold pt-2">
+                <FiCheckCircle /> Structural Grid: Calibrated Hardwood + Soft Velvet Custom Upholstery
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6: Living Lounges */}
+        <section id="living" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32 border-b border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
+            <div className="lg:col-span-5 z-10 space-y-4">
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[06 / Entertainment Hubs]</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Bespoke Living Lounges</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
                 We craft central architectural entertainment fixtures detailed with custom warm LED routing matrices, hidden internal cable-management pathways, and premium micro-fluted structural panel accent backdrops.
@@ -281,14 +308,20 @@ export default function App() {
                 <FiSliders /> Structural Grid: Teak Wood Outlines + Custom Finished Accents
               </div>
             </div>
+            <div className="lg:col-span-7 h-[45vh] lg:h-[65vh] overflow-hidden shadow-2xl border border-white/5">
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=90" alt="High End TV Console Unit Living Room" className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
+            </div>
           </div>
         </section>
 
-        {/* SECTION 6: Wardrobes */}
-        <section id="wardrobes" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32 border-b border-white/5">
+        {/* SECTION 7: Wardrobes */}
+        <section id="wardrobes" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
-            <div className="lg:col-span-5 z-10 space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block mb-3">[06 / Premium Storage]</span>
+            <div className="lg:col-span-7 h-[45vh] lg:h-[65vh] overflow-hidden order-2 lg:order-1 shadow-2xl border border-white/5">
+              <img src={closet} className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
+            </div>
+            <div className="lg:col-span-5 z-10 order-1 lg:order-2 space-y-4">
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block mb-3">[07 / Premium Storage]</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Walk-In Closets</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
                 Floor-to-ceiling sleek closet storage installations detailed with premium aluminum profile safety-glass frames, automatic proximity sensory light track rails, and soft velvet item organizers.
@@ -297,20 +330,36 @@ export default function App() {
                 <FiCpu /> Structural Grid: Smoked Anodized Metal Profiles + Proximity Sensors
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* SECTION 8: Sanctuary Bedrooms */}
+        <section id="bedrooms" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32 border-b border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
+            <div className="lg:col-span-5 z-10 space-y-4">
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[08 / Private Sanctuaries]</span>
+              <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Master Bedroom Sanctuary</h2>
+              <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
+                We shape restful private spaces using custom upholstered headboard systems, floating bedside cabinets, integrated vanity corners, and concealed ambient bed illumination. Tailored using soft-touch materials and premium veneered panels for absolute comfort.
+              </p>
+              <div className="premium-reveal-text opacity-0 translate-y-8 flex items-center gap-2 text-xs font-mono text-brand-gold pt-2">
+                <FiCompass /> Structural Grid: Veneered MDF Blocks + Sound-Dampening Padded Headboards
+              </div>
+            </div>
             <div className="lg:col-span-7 h-[45vh] lg:h-[65vh] overflow-hidden shadow-2xl border border-white/5">
-              <img src={closet} />
+              <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=90" alt="Master Bedroom Sanctuary Furniture Design" className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
             </div>
           </div>
         </section>
 
-        {/* SECTION 7: Kids Bedrooms & Premium Luxury Vanities */}
+        {/* SECTION 9: Kids Bedrooms & Premium Luxury Vanities */}
         <section id="kids-vanity" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
             <div className="lg:col-span-7 h-[45vh] lg:h-[65vh] overflow-hidden order-2 lg:order-1 shadow-2xl border border-white/5">
               <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1200&q=90" alt="Luxury Bathroom Vanity Furniture Design" className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
             </div>
             <div className="lg:col-span-5 z-10 order-1 lg:order-2 space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[07 / Private Ensuites]</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[09 / Private Ensuites]</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Vanities & Kids Habitats</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
                 Creating vibrant but durable ergonomically designed youth bedrooms alongside master ensuite floating vanities. Engineered using absolute waterproof high-pressure laminates to sustain direct water droplets and intense daily handling safely.
@@ -322,11 +371,11 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 8: Structural Woodwork */}
+        {/* SECTION 10: Structural Woodwork */}
         <section id="structural" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32 border-b border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
             <div className="lg:col-span-5 z-10 space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[08 / Heavy Woodwork]</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[10 / Heavy Woodwork]</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Heavy Wood Joinery</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
                 Our classic carpentry workshop focuses heavily on solid double-door main entry ways, precise CNC router geometric ceiling panel overlays, structural wooden separation dividers, and loose customized statement furniture.
@@ -341,14 +390,14 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 9: Commercial Space Blueprints */}
+        {/* SECTION 11: Commercial Space Blueprints */}
         <section id="commercial" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
             <div className="lg:col-span-7 h-[45vh] lg:h-[65vh] overflow-hidden order-2 lg:order-1 shadow-2xl border border-white/5">
               <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=90" alt="Executive Corporate Boardroom Furniture Design" className="premium-slide-img opacity-0 translate-x-12 scale-105 w-full h-full object-cover" />
             </div>
             <div className="lg:col-span-5 z-10 order-1 lg:order-2 space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[09 / High-Traffic Spatial]</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[11 / High-Traffic Spatial]</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Corporate Chambers</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
                 Expanding high-end execution directly into elite retail outlets, premium executive director spaces, and high-end acoustic boardrooms. Maximizing floor planning acoustics alongside highly structural integrated technology hubs.
@@ -360,11 +409,11 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 10: Real Factory Live Transparency */}
+        {/* SECTION 12: Real Factory Live Transparency */}
         <section id="workshop" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32 border-b border-white/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
             <div className="lg:col-span-5 z-10 space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[10 / Production Facility]</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[12 / Production Facility]</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">The Live Workshop</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans">
                 We believe true premium results come from ultimate structural transparency. Every blueprint layout runs directly into our centralized factory floor where master craftsmen utilize linear multi-stage edge-band machines and computerized multi-axis panel routing infrastructure.
@@ -383,7 +432,7 @@ export default function App() {
         <section id="turnkey" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
           <div className="max-w-5xl mx-auto w-full space-y-12">
             <div className="text-center space-y-2">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs uppercase tracking-widest font-mono font-bold block">// Absolute Delivery Mechanics</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs uppercase tracking-widest font-mono font-bold block"> Absolute Delivery Mechanics</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl font-display uppercase tracking-tighter text-theme-heading">The Turnkey Lifecycle</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -406,7 +455,7 @@ export default function App() {
         <section id="materials" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32 border-b border-white/5">
           <div className="max-w-4xl mx-auto text-center w-full space-y-12">
             <div className="space-y-4">
-              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs uppercase tracking-widest font-mono font-bold block">// Production Standards</span>
+              <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs uppercase tracking-widest font-mono font-bold block"> Production Standards</span>
               <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-7xl font-display uppercase tracking-tighter text-theme-heading">Material Integrity</h2>
               <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm md:text-base leading-relaxed max-w-2xl mx-auto font-sans">
                 We completely eliminate fragile composite pulp alternatives. Thilak Furnitures builds exclusively using chemically treated structural framing layers, anti-corrosive structural fasteners, and pristine wear surfaces.
@@ -445,17 +494,87 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 13: Inquire Contact */}
-        <section id="contact" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32">
+        {/* SECTION 15: Contact Details */}
+        <section id="contact-info" className="w-full min-h-screen flex items-center px-6 md:px-24 py-32 border-b border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
+            <div className="lg:col-span-6 space-y-8">
+              <div className="space-y-3">
+                <span className="premium-reveal-text opacity-0 translate-y-8 text-brand-gold text-xs font-mono uppercase tracking-widest block">[15 / Location & Reach]</span>
+                <h2 className="premium-reveal-text opacity-0 translate-y-8 text-4xl md:text-6xl uppercase tracking-tighter font-display text-theme-heading">Connect With Us</h2>
+                <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm leading-relaxed font-sans max-w-md">
+                  Have a plan or blueprint ready? Reach out to us directly or visit our premium production facility to witness our materials and construction processes firsthand.
+                </p>
+              </div>
+              
+              <div className="premium-reveal-text opacity-0 translate-y-8 space-y-4 pt-4">
+                {/* Mail Card */}
+                <a href="mailto:Thilaksrivarsha@gmail.com" className="flex items-start gap-4 p-5 border border-brand-gold/10 hover:border-brand-gold/40 bg-black/5 dark:bg-black/20 transition-colors duration-300 group">
+                  <div className="w-10 h-10 rounded-none bg-brand-gold/10 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-muted-theme block">Email Address</span>
+                    <span className="text-base font-bold font-sans text-theme-heading hover:text-brand-gold transition-colors">Thilaksrivarsha@gmail.com</span>
+                  </div>
+                </a>
+
+                {/* Phone Card */}
+                <a href="tel:7993983299" className="flex items-start gap-4 p-5 border border-brand-gold/10 hover:border-brand-gold/40 bg-black/5 dark:bg-black/20 transition-colors duration-300 group">
+                  <div className="w-10 h-10 rounded-none bg-brand-gold/10 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-all duration-300">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-muted-theme block">Call Directly</span>
+                    <span className="text-base font-bold font-sans text-theme-heading hover:text-brand-gold transition-colors">+91 79939 83299</span>
+                  </div>
+                </a>
+
+                {/* Address Card */}
+                <div className="flex items-start gap-4 p-5 border border-brand-gold/10 bg-black/5 dark:bg-black/20 transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-none bg-brand-gold/10 flex items-center justify-center text-brand-gold">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-muted-theme block">Manufacturing Unit & Address</span>
+                    <span className="text-sm font-semibold font-sans text-theme-heading leading-relaxed block">
+                      Plot no 537, B N Reddy Nagar, Phase 2, IDA Cherlapally
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-6 relative h-[45vh] lg:h-[65vh] w-full overflow-hidden shadow-2xl border border-white/5">
+              <img 
+                src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=90" 
+                alt="Premium Furniture Showroom Design Studio" 
+                className="w-full h-full object-cover premium-slide-img opacity-0 translate-x-12 scale-105" 
+              />
+              <div className="absolute bottom-6 left-6 z-10">
+                <a 
+                  href="https://maps.google.com/?q=Plot+no+537,+B+N+Reddy+Nagar,+Phase+2,+IDA+Cherlapally" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 bg-black/80 hover:bg-brand-gold hover:text-black text-white px-5 py-3 text-xs font-bold uppercase tracking-wider transition-all duration-300 backdrop-blur-sm border border-white/10 hover:border-brand-gold"
+                >
+                  Get Directions On Map <FiArrowRight size={12} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 16: Inquire Contact */}
+        <section id="contact" className="w-full min-h-screen flex items-center bg-secondary-theme px-6 md:px-24 py-32">
           <div className="max-w-3xl mx-auto w-full text-center space-y-8">
-            <h2 className="premium-reveal-text opacity-0 translate-y-8 text-5xl md:text-8xl font-display uppercase tracking-tighter text-white">Start Your Blueprint</h2>
-            <p className="premium-reveal-text opacity-0 translate-y-8 text-gray-400 text-sm max-w-md mx-auto leading-relaxed font-sans">
+            <h2 className="premium-reveal-text opacity-0 translate-y-8 text-5xl md:text-8xl font-display uppercase tracking-tighter text-theme-heading">Start Your Blueprint</h2>
+            <p className="premium-reveal-text opacity-0 translate-y-8 text-muted-theme text-sm max-w-md mx-auto leading-relaxed font-sans">
               Ready to execute tailored modular layouts, premium closets, or heavy structural wood fittings? Let us map custom industrial estimates for your blueprints.
             </p>
-            <a href="mailto:info@thilakfurnitures.com" className="premium-reveal-text opacity-0 translate-y-8 inline-flex items-center gap-3 bg-brand-gold text-black px-8 py-5 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-pointer rounded-none border border-brand-gold">
+            <a href="mailto:Thilaksrivarsha@gmail.com" className="premium-reveal-text opacity-0 translate-y-8 inline-flex items-center gap-3 bg-brand-gold text-black px-8 py-5 text-xs font-bold uppercase tracking-widest hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all cursor-pointer rounded-none border border-brand-gold">
               Initiate Consultation <FiArrowRight size={14} />
             </a>
-            <div className="mt-20 pt-8 border-t border-brand-gold/10 flex justify-between items-center text-[10px] text-gray-500 font-mono tracking-widest uppercase">
+            <div className="mt-20 pt-8 border-t border-brand-gold/10 flex justify-between items-center text-[10px] text-muted-theme font-mono tracking-widest uppercase">
               <span>Thilak Furnitures &copy; 2026</span>
               <span>Premium Production Standard</span>
             </div>
