@@ -12,7 +12,8 @@ import timber from './assets/timber.png';
 import { 
   FiSun, FiMoon, FiArrowRight, FiLayers, FiCheckCircle, 
   FiShield, FiSliders, FiCpu, FiCompass, FiAward, FiFeather,
-  FiBriefcase, FiEye, FiBox
+  FiBriefcase, FiEye, FiBox, FiGithub, FiInstagram, FiLinkedin,
+  FiMail, FiPhone, FiMapPin
 } from 'react-icons/fi';
 
 export default function App() {
@@ -111,10 +112,74 @@ export default function App() {
   useGSAP(() => {
     // Preloader and Hero entry timeline sequence
     const tl = gsap.timeline();
-    tl.to(".preloader-logo", { scale: 1.02, duration: 0.8, ease: "power2.out" })
-      .to(".preloader", { yPercent: -100, duration: 0.8, ease: "power4.inOut", delay: 0.1 })
-      .from(".hero-reveal-title", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out" }, "-=0.2")
-      .from(".hero-reveal-sub", { y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }, "-=0.6");
+    tl.to(".preloader-logo", { scale: 1.05, duration: 0.8, ease: "power2.out" })
+      .to(".preloader", { yPercent: -100, duration: 0.9, ease: "power4.inOut", delay: 0.1 })
+      
+      // Left Column Animations
+      .from(".hero-logo-box", { 
+        scale: 0.6, 
+        y: 40, 
+        rotationX: 45,
+        opacity: 0, 
+        duration: 1.2, 
+        ease: "back.out(1.7)" 
+      }, "-=0.3")
+      .from(".hero-main-title", { 
+        x: -50, 
+        skewX: -10, 
+        opacity: 0, 
+        duration: 1.0, 
+        ease: "power4.out" 
+      }, "-=0.9")
+      .from(".hero-location-badge", { 
+        y: 20, 
+        opacity: 0, 
+        duration: 0.8, 
+        ease: "power3.out" 
+      }, "-=0.8")
+      .from(".hero-details-item", { 
+        y: 15, 
+        opacity: 0, 
+        stagger: 0.12, 
+        duration: 0.8, 
+        ease: "power2.out" 
+      }, "-=0.7")
+      .from(".hero-social-icon", { 
+        scale: 0, 
+        rotation: -45, 
+        opacity: 0, 
+        stagger: 0.1, 
+        duration: 0.8, 
+        ease: "back.out(2)" 
+      }, "-=0.6")
+      
+      // Right Column Animations
+      .from(".hero-right-subtitle", { 
+        y: -15, 
+        opacity: 0, 
+        duration: 0.6, 
+        ease: "power2.out" 
+      }, "-=1.1")
+      .from(".hero-quote-text", { 
+        x: 60, 
+        skewY: 2, 
+        opacity: 0, 
+        duration: 1.2, 
+        ease: "power4.out" 
+      }, "-=1.0")
+      .from(".hero-subquote-text", { 
+        y: 30, 
+        opacity: 0, 
+        duration: 0.9, 
+        ease: "power3.out" 
+      }, "-=0.8")
+      .from(".hero-cta-btn", { 
+        y: 20, 
+        opacity: 0, 
+        stagger: 0.15, 
+        duration: 0.8, 
+        ease: "power3.out" 
+      }, "-=0.6");
   }, { scope: containerRef });
 
   return (
@@ -135,23 +200,6 @@ export default function App() {
           </span>
         </div>
       </div>
-
-      {/* Top Floating Header */}
-      <header className="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-6 md:px-12 py-4 backdrop-blur-md bg-transparent">
-        <img src={logo} alt="Logo" className="h-16 md:h-20 w-auto object-contain filter drop-shadow-md" />
-        
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={toggleTheme} 
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-brand-gold/20 hover:border-brand-gold bg-black/20 text-brand-gold cursor-pointer transition-all hover:scale-105 active:scale-95"
-          >
-            {isDarkMode ? <FiSun size={16} /> : <FiMoon size={16} />}
-          </button>
-          <button onClick={() => scrollToSection(sections.length - 1)} className="flex items-center gap-2 border border-brand-gold text-brand-gold px-5 py-2.5 text-xs font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black transition-all cursor-pointer rounded-none">
-            Inquire <FiArrowRight size={14} />
-          </button>
-        </div>
-      </header>
 
       {/* Dynamically Calibrated Nav Loop */}
       <nav className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2.5 items-center bg-secondary-theme/40 p-3 rounded-full backdrop-blur-md border border-brand-gold/10">
@@ -174,7 +222,7 @@ export default function App() {
       <main className="portfolio-container w-full">
 
         {/* SECTION 1: Intro */}
-        <section id="home" className="w-full min-h-screen flex items-center px-6 md:px-24 relative py-32">
+        <section id="home" className="w-full min-h-screen flex items-center px-6 md:px-24 relative py-20 lg:py-32">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=2000&q=90" 
@@ -184,17 +232,127 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0D0D0D] via-[#0D0D0D]/60 to-transparent dark-overlay" />
           </div>
           <HeroBackground />
-          <div className="max-w-4xl z-10 relative">
-            <span className="hero-reveal-sub block text-brand-gold uppercase tracking-[0.2em] text-xs font-bold font-mono mb-4"> Architectural Interior Atelier</span>
-            <h1 className="hero-reveal-title text-5xl sm:text-7xl md:text-9xl tracking-tighter leading-[0.95] mb-6 font-display uppercase text-white">
-              Spaces <br />Perfected.
-            </h1>
-            <p className="hero-reveal-sub text-gray-300 max-w-xl text-sm md:text-base mb-8 leading-relaxed font-sans">
-              Engineering premium custom furniture systems and structural interior profiles using moisture-resistant calibrated timbers calculated to stand beautifully for generations.
-            </p>
-            <button onClick={() => scrollToSection(1)} className="hero-reveal-sub flex items-center gap-3 px-6 py-4 bg-brand-gold text-black font-bold tracking-widest uppercase text-xs hover:bg-white hover:text-black transition-all cursor-pointer rounded-none border border-brand-gold">
-              Discover Our Story <FiArrowRight size={14} />
-            </button>
+          
+          <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10 relative">
+            {/* Left Column: Big Logo and Details */}
+            <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+              
+              <div className="flex items-center gap-2 px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 rounded-full w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping" />
+                <span className="text-[10px] tracking-[0.25em] font-mono text-brand-gold uppercase font-semibold">PREMIUM PRODUCTION MODULE</span>
+              </div>
+
+              <div className="hero-logo-box relative p-6 bg-black/40 backdrop-blur-lg border border-brand-gold/10 rounded-lg inline-block shadow-[0_0_50px_rgba(179,146,75,0.15)] group overflow-hidden">
+                {/* Tech brackets corners */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-brand-gold" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-brand-gold" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-brand-gold" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-brand-gold" />
+                
+                <img 
+                  src={logo} 
+                  alt="Thilak Furnitures" 
+                  className="w-48 sm:w-64 md:w-80 h-auto object-contain filter drop-shadow-[0_0_30px_rgba(179,146,75,0.35)] transition-transform duration-700 group-hover:scale-105" 
+                />
+              </div>
+              <div className="space-y-2">
+                <h1 className="hero-main-title text-4xl sm:text-5xl md:text-6xl tracking-tight leading-none font-display uppercase text-white">
+                  Thilak Furnitures
+                </h1>
+                <p className="hero-location-badge text-brand-gold uppercase tracking-[0.25em] text-xs font-bold font-mono flex items-center gap-2 justify-center lg:justify-start">
+                  <FiMapPin className="animate-pulse" /> Based in Hyderabad
+                </p>
+              </div>
+              
+              {/* Details of the company / contact info */}
+              <div className="space-y-3 pl-4 border-l border-brand-gold/20 text-gray-300 text-xs sm:text-sm font-mono tracking-wide">
+                <a href="mailto:Thilaksrivarsha@gmail.com" className="hero-details-item flex items-center gap-3 hover:text-brand-gold transition-colors duration-300">
+                  <span className="text-brand-gold/50 text-[10px]">01 //</span>
+                  <FiMail className="text-brand-gold" /> Thilaksrivarsha@gmail.com
+                </a>
+                <a href="tel:7993983299" className="hero-details-item flex items-center gap-3 hover:text-brand-gold transition-colors duration-300">
+                  <span className="text-brand-gold/50 text-[10px]">02 //</span>
+                  <FiPhone className="text-brand-gold" /> +91 79939 83299
+                </a>
+                <div className="hero-details-item flex items-center gap-3">
+                  <span className="text-brand-gold/50 text-[10px]">03 //</span>
+                  <FiCompass className="text-brand-gold" /> Plot no 537, IDA Cherlapally
+                </div>
+              </div>
+
+              {/* Social Icons & GitHub */}
+              <div className="flex items-center gap-4 pt-2">
+                <a 
+                  href="https://github.com/thilak-furnitures" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="GitHub Repository"
+                  className="hero-social-icon w-11 h-11 border border-brand-gold/20 hover:border-brand-gold hover:text-black hover:bg-brand-gold bg-black/40 text-brand-gold flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(179,146,75,0.4)]"
+                >
+                  <FiGithub size={18} />
+                </a>
+                <a 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="LinkedIn"
+                  className="hero-social-icon w-11 h-11 border border-brand-gold/20 hover:border-brand-gold hover:text-black hover:bg-brand-gold bg-black/40 text-brand-gold flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(179,146,75,0.4)]"
+                >
+                  <FiLinkedin size={18} />
+                </a>
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="Instagram"
+                  className="hero-social-icon w-11 h-11 border border-brand-gold/20 hover:border-brand-gold hover:text-black hover:bg-brand-gold bg-black/40 text-brand-gold flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(179,146,75,0.4)]"
+                >
+                  <FiInstagram size={18} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Column: Quote and Sub-quote */}
+            <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:pl-12 border-t lg:border-t-0 lg:border-l border-brand-gold/20 pt-8 lg:pt-0">
+              <div className="relative p-8 bg-black/30 backdrop-blur-md border border-brand-gold/10 rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden w-full">
+                {/* Absolute Tech Details */}
+                <span className="absolute top-2 right-4 text-[9px] font-mono text-brand-gold/30">REF. ID // ATF-78</span>
+                <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-brand-gold/40" />
+                <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-brand-gold/40" />
+                
+                <div className="space-y-4">
+                  <span className="hero-right-subtitle block text-brand-gold uppercase tracking-[0.2em] text-xs font-bold font-mono">
+                    Architectural Interior Atelier
+                  </span>
+                  
+                  {/* Quote */}
+                  <h2 className="hero-quote-text text-3xl sm:text-4xl md:text-5xl font-display italic tracking-tight text-white leading-tight">
+                    &ldquo;Crafting Spaces, Engineering Legacies.&rdquo;
+                  </h2>
+                  
+                  {/* Sub Quote */}
+                  <p className="hero-subquote-text text-gray-300 text-sm md:text-base leading-relaxed font-sans font-light">
+                    Tailoring premium custom furniture and modular spatial ecosystems using calibrated moisture-resistant timber designed to endure beautifully across generations.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2 w-full">
+                <button 
+                  onClick={() => scrollToSection(1)} 
+                  className="hero-cta-btn flex items-center gap-3 px-6 py-4 bg-brand-gold text-black font-bold tracking-widest uppercase text-xs hover:bg-white hover:text-black transition-all cursor-pointer rounded-none border border-brand-gold hover:shadow-[0_0_20px_rgba(179,146,75,0.4)]"
+                >
+                  Discover Our Story <FiArrowRight size={14} />
+                </button>
+                
+                <button 
+                  onClick={toggleTheme} 
+                  className="hero-cta-btn flex items-center gap-2 border border-brand-gold/20 text-brand-gold px-6 py-4 text-xs font-bold tracking-widest uppercase hover:border-brand-gold hover:bg-brand-gold hover:text-black transition-all cursor-pointer rounded-none hover:shadow-[0_0_20px_rgba(179,146,75,0.2)]"
+                >
+                  {isDarkMode ? <FiSun size={14} /> : <FiMoon size={14} />} {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
